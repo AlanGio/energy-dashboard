@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Toolbar from "@mui/material/Toolbar";
+import "./App.css";
+import { Grid, StyledEngineProvider, ThemeProvider } from "@mui/material";
+import { HeaderControls } from "./components/HeaderControls";
+import { LeftMenu } from "./components/LeftMenu";
+import { theme } from "./config/theme";
+import { TopLinks } from "./components/TopLinks";
+import { MainChartContent } from "./components/MainChartContent";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Container maxWidth="xl">
+          <AppBar position="static" sx={{ backgroundColor: "black" }}>
+            <Container maxWidth="xl">
+              <Toolbar disableGutters>
+                <Box>Link+</Box>
+              </Toolbar>
+            </Container>
+          </AppBar>
+          <Grid container>
+            <Grid xs={12} sm={12}>
+              <TopLinks />
+            </Grid>
+            <Grid xs={12} sm={12}>
+              <HeaderControls />
+            </Grid>
+
+            <Grid xs={12} sm={3}>
+              <LeftMenu />
+            </Grid>
+
+            <Grid xs={12} sm={9}>
+              <MainChartContent />
+            </Grid>
+          </Grid>
+        </Container>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
-}
+};
 
 export default App;

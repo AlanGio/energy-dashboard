@@ -48,7 +48,14 @@ const App = () => {
             </Grid>
 
             <Grid item xs={12} sm={9}>
-              <MainChartContent serviceType={serviceType} />
+              <MainChartContent
+                serviceType={serviceType}
+                showItems={
+                  weather
+                    ? ['usage', 'demand', 'temperature']
+                    : ['usage', 'demand']
+                }
+              />
               <SecondaryChartContent />
             </Grid>
           </Grid>

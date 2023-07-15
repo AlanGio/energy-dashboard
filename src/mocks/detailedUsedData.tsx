@@ -27,7 +27,8 @@ export const generateDetailedUsedData = (
     name: day.toLocaleDateString('en-us', format),
     day: {
       usage: randomIntFromInterval(10, 200),
-      demand: randomIntFromInterval(10, 200)
+      demand: randomIntFromInterval(10, 200),
+      temperature: randomIntFromInterval(50, 250)
     },
     hours: hours.map((hour) => ({
       name: hour,

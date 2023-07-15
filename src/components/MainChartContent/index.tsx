@@ -14,7 +14,13 @@ import { generateDetailedUsedData } from '../../mocks/detailedUsedData';
 import { Summary } from '../Summary';
 import { serviceData } from '../../mocks/serviceData';
 
-export const MainChartContent = ({ serviceType }: { serviceType: string }) => {
+export const MainChartContent = ({
+  serviceType,
+  showItems
+}: {
+  serviceType: string;
+  showItems: string[];
+}) => {
   const [reportingPeriod, setReportingPeriod] = useState('11-2022');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -74,6 +80,7 @@ export const MainChartContent = ({ serviceType }: { serviceType: string }) => {
               name: item.name,
               ...item.day
             }))}
+            showItems={showItems}
           />
         </Grid>
       </Grid>

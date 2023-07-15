@@ -7,17 +7,17 @@ import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import BoltIcon from '@mui/icons-material/Bolt';
 
 export const HeaderControls = ({
-  usage,
+  metric,
   serviceType,
-  handleUsage,
+  handleMetric,
   weather,
   handleServiceType,
   handleWeather
 }: {
-  usage: string;
+  metric: string;
   serviceType: string;
   weather: boolean;
-  handleUsage?: (usage: string) => void;
+  handleMetric?: (usage: string) => void;
   handleServiceType?: (serviceType: string) => void;
   handleWeather?: (weather: boolean) => void;
 }) => {
@@ -28,7 +28,7 @@ export const HeaderControls = ({
   return (
     <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 3, mb: 2 }}>
       <ViewToggleButton
-        selectedValue={usage}
+        selectedValue={metric}
         sx={{
           display: 'inline-flex',
           justifyContent: 'center'
@@ -37,12 +37,12 @@ export const HeaderControls = ({
           {
             name: 'spending',
             text: 'Spending',
-            callback: handleUsage
+            callback: handleMetric
           },
           {
             name: 'usage',
             text: 'Usage',
-            callback: handleUsage
+            callback: handleMetric
           }
         ]}
       />

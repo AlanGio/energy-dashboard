@@ -14,7 +14,8 @@ import { useState } from 'react';
 
 const App = () => {
   const [serviceType, setServiceType] = useState('electric');
-  const [usage, setUsage] = useState('usage');
+  const [metric, setMetric] = useState('usage');
+  const [weather, setWeather] = useState(false);
 
   return (
     <StyledEngineProvider injectFirst>
@@ -34,10 +35,11 @@ const App = () => {
             <Grid item xs={12} sm={12}>
               <HeaderControls
                 serviceType={serviceType}
-                usage={usage}
+                metric={metric}
                 handleServiceType={setServiceType}
-                handleUsage={setUsage}
-                weather={false}
+                handleMetric={setMetric}
+                handleWeather={setWeather}
+                weather={weather}
               />
             </Grid>
 

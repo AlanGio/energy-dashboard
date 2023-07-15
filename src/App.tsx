@@ -10,8 +10,12 @@ import { theme } from './config/theme';
 import { TopLinks } from './components/TopLinks';
 import { MainChartContent } from './components/MainChartContent';
 import { SecondaryChartContent } from './components/SecondaryChartContent';
+import { useState } from 'react';
 
 const App = () => {
+  const [serviceType, setServiceType] = useState('electric');
+  const [usage, setUsage] = useState('usage');
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
@@ -28,7 +32,13 @@ const App = () => {
               <TopLinks />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <HeaderControls />
+              <HeaderControls
+                serviceType={serviceType}
+                usage={usage}
+                handleServiceType={setServiceType}
+                handleUsage={setUsage}
+                weather={false}
+              />
             </Grid>
 
             <Grid item xs={12} sm={3}>
@@ -36,7 +46,7 @@ const App = () => {
             </Grid>
 
             <Grid item xs={12} sm={9}>
-              <MainChartContent />
+              <MainChartContent serviceType={serviceType} />
               <SecondaryChartContent />
             </Grid>
           </Grid>

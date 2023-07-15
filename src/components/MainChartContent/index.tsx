@@ -5,18 +5,34 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-  Typography,
-} from "@mui/material";
-import { MonthlyUsageChart } from "../MonthlyUsageChart";
-import { color } from "../../config/theme";
-import { useState } from "react";
+  Typography
+} from '@mui/material';
+import { LineBarAreaComposedChart } from '../LineBarAreaComposedChart';
+import { color } from '../../config/theme';
+import { useState } from 'react';
+import { generateDetailedUsedData } from '../../mocks/detailedUsedData';
 
 export const MainChartContent = () => {
-  const [reportingPeriod, setReportingPeriod] = useState("11-2022");
+  const [reportingPeriod, setReportingPeriod] = useState('11-2022');
 
   const handleChange = (event: SelectChangeEvent) => {
     setReportingPeriod(event.target.value as string);
   };
+
+  const currentPeriod = reportingPeriod.split('-');
+  const chartData = generateDetailedUsedData(
+    currentPeriod[0],
+    currentPeriod[1]
+  );
+
+  //console.log(chartData, 'chartData');
+  console.log(
+    chartData.map((item) => ({
+      name: item.name,
+      ...item.day
+    })),
+    'chartData2'
+  );
 
   return (
     <Box
@@ -25,7 +41,7 @@ export const MainChartContent = () => {
         borderTopRightRadius: 32,
         backgroundColor: color.ShadesWhite,
         p: 4,
-        ml: 2,
+        ml: 2
       }}
     >
       <Grid container>
@@ -35,41 +51,41 @@ export const MainChartContent = () => {
               pr: 4,
               pb: 4,
               borderBottom: `1px solid ${color.TransparenciesSecondaryMain25}`,
-              borderRight: `1px solid ${color.TransparenciesSecondaryMain25}`,
+              borderRight: `1px solid ${color.TransparenciesSecondaryMain25}`
             }}
           >
             <Typography
               variant="h5"
               sx={{
                 fontWeight: 600,
-                mb: 2,
+                mb: 2
               }}
             >
               Month-to-Date
             </Typography>
 
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: 'flex' }}>
               <Box
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center'
                 }}
               >
                 <Typography variant="h3">1000,396 kWh</Typography>
-                <Typography variant="body2" sx={{ textTransform: "uppercase" }}>
+                <Typography variant="body2" sx={{ textTransform: 'uppercase' }}>
                   Total Electric Usage
                 </Typography>
               </Box>
               <Box
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center'
                 }}
               >
                 <Typography variant="h3">90.6 kW</Typography>
-                <Typography variant="body2" sx={{ textTransform: "uppercase" }}>
+                <Typography variant="body2" sx={{ textTransform: 'uppercase' }}>
                   Peak Demand
                 </Typography>
               </Box>
@@ -81,42 +97,42 @@ export const MainChartContent = () => {
             sx={{
               pl: 4,
               pb: 4,
-              borderBottom: `1px solid ${color.TransparenciesSecondaryMain25}`,
+              borderBottom: `1px solid ${color.TransparenciesSecondaryMain25}`
             }}
           >
             <Typography
               variant="h5"
               sx={{
                 fontWeight: 600,
-                mb: 2,
+                mb: 2
               }}
             >
               Year-to-Date
             </Typography>
 
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: 'flex' }}>
               <Box
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center'
                 }}
               >
                 <Typography variant="h3">305,395 kWh</Typography>
-                <Typography variant="body2" sx={{ textTransform: "uppercase" }}>
+                <Typography variant="body2" sx={{ textTransform: 'uppercase' }}>
                   Total Electric Usage
                 </Typography>
               </Box>
               <Box
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  mr: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  mr: 2
                 }}
               >
                 <Typography variant="h3">125.6 kW</Typography>
-                <Typography variant="body2" sx={{ textTransform: "uppercase" }}>
+                <Typography variant="body2" sx={{ textTransform: 'uppercase' }}>
                   Peak Demand
                 </Typography>
               </Box>
@@ -124,7 +140,7 @@ export const MainChartContent = () => {
           </Box>
         </Grid>
         <Grid item xs={12} sm={12}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography variant="h5" sx={{ fontWeight: 600, pt: 4 }}>
               Monthly Usage Data
             </Typography>
@@ -152,7 +168,13 @@ export const MainChartContent = () => {
               </FormControl>
             </Box>
           </Box>
-          <MonthlyUsageChart sx={{ height: 500 }} />
+          <LineBarAreaComposedChart
+            sx={{ height: 500 }}
+            data={chartData.map((item) => ({
+              name: item.name,
+              ...item.day
+            }))}
+          />
         </Grid>
       </Grid>
     </Box>

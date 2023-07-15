@@ -64,7 +64,7 @@ export const MainChartContent = () => {
               Month-to-Date
             </Typography>
 
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Box
                 sx={{
                   display: 'flex',
@@ -72,7 +72,7 @@ export const MainChartContent = () => {
                   alignItems: 'center'
                 }}
               >
-                <Typography variant="h3">1000,396 kWh</Typography>
+                <Typography variant="h3">100,396 kWh</Typography>
                 <Typography variant="body2" sx={{ textTransform: 'uppercase' }}>
                   Total Electric Usage
                 </Typography>
@@ -110,7 +110,7 @@ export const MainChartContent = () => {
               Year-to-Date
             </Typography>
 
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Box
                 sx={{
                   display: 'flex',

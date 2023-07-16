@@ -13,6 +13,25 @@ import {
   Area
 } from 'recharts';
 
+const CustomizedAxisTick = (props: any) => {
+  const { x, y, payload } = props;
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x="30px"
+        y="20px"
+        dy={16}
+        textAnchor="end"
+        fill="#666"
+        transform="rotate(-35)"
+      >
+        {payload.value}
+      </text>
+    </g>
+  );
+};
+
 export const LineBarAreaComposedChart = ({
   sx,
   data = [],
@@ -37,18 +56,18 @@ export const LineBarAreaComposedChart = ({
           }}
         >
           <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="name" scale="band" />
+          <XAxis dataKey="name" scale="band" tick={<CustomizedAxisTick />} />
           <YAxis unit="k" />
 
           <Tooltip />
-          <Legend />
+          <Legend wrapperStyle={{ bottom: -20 }} />
 
           {showItems.includes('usage') && (
             <Bar
               dataKey="usage"
               barSize={20}
               fill={color.MarketingSolar}
-              name="Monthly Usage(kWh)"
+              name="Usage"
             />
           )}
 
@@ -57,7 +76,7 @@ export const LineBarAreaComposedChart = ({
               type="monotone"
               dataKey="demand"
               stroke={color.Primary500}
-              name="Monthly Demand(kW)"
+              name="Demand"
             />
           )}
 

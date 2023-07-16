@@ -21,17 +21,13 @@ export const MainChartContent = ({
   serviceType: string;
   showItems: string[];
 }) => {
-  const [reportingPeriod, setReportingPeriod] = useState('11-2022');
+  const [reportingPeriod, setReportingPeriod] = useState('2022');
 
   const handleChange = (event: SelectChangeEvent) => {
     setReportingPeriod(event.target.value as string);
   };
 
-  const currentPeriod = reportingPeriod.split('-');
-  const chartData = generateDetailedUsedData(
-    currentPeriod[0],
-    currentPeriod[1]
-  );
+  const chartData = generateDetailedUsedData(null, reportingPeriod);
 
   return (
     <Box
@@ -60,16 +56,12 @@ export const MainChartContent = ({
                   onChange={handleChange}
                   size="small"
                 >
-                  <MenuItem value="11-2022" selected>
-                    November 2022
+                  <MenuItem value="2020">Year 2020</MenuItem>
+                  <MenuItem value="2021">Year 2021</MenuItem>
+                  <MenuItem value="2022" selected>
+                    Year 2022
                   </MenuItem>
-                  <MenuItem value="12-2022">December 2022</MenuItem>
-                  <MenuItem value="01-2023">Juanary 2023</MenuItem>
-                  <MenuItem value="02-2023">February 2023</MenuItem>
-                  <MenuItem value="03-2023">March 2023</MenuItem>
-                  <MenuItem value="0411-2023">April 2023</MenuItem>
-                  <MenuItem value="05-2023">May 2023</MenuItem>
-                  <MenuItem value="06-2023">June 2023</MenuItem>
+                  <MenuItem value="2023">Year 2023</MenuItem>
                 </Select>
               </FormControl>
             </Box>

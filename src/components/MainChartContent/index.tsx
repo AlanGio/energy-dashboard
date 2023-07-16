@@ -66,14 +66,46 @@ export const MainChartContent = ({
               </FormControl>
             </Box>
           </Box>
-          <LineBarAreaComposedChart
-            sx={{ height: 500 }}
-            data={chartData.map((item) => ({
-              name: item.name,
-              ...item.day
-            }))}
-            showItems={showItems}
-          />
+
+          <Box sx={{ display: 'flex' }}>
+            <Typography
+              variant="h5"
+              sx={{
+                textOrientation: 'sideways',
+                writingMode: 'vertical-rl',
+                width: 30,
+                height: 450,
+                display: 'flex',
+                justifyContent: 'center',
+                transform: 'rotate(180deg)',
+                fontWeight: 600
+              }}
+            >
+              Monthly Usage (kWh)
+            </Typography>
+            <LineBarAreaComposedChart
+              sx={{ height: 500, width: '100%' }}
+              data={chartData.map((item) => ({
+                name: item.name,
+                ...item.day
+              }))}
+              showItems={showItems}
+            />
+            <Typography
+              variant="h5"
+              sx={{
+                textOrientation: 'sideways',
+                writingMode: 'vertical-rl',
+                width: 30,
+                height: 450,
+                display: 'flex',
+                justifyContent: 'center',
+                fontWeight: 600
+              }}
+            >
+              Monthly Demand (kW)
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
     </Box>

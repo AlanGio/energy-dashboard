@@ -55,9 +55,16 @@ export const LineBarAreaComposedChart = ({
             left: 20
           }}
         >
-          <CartesianGrid stroke="#f5f5f5" />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="name" scale="band" tick={<CustomizedAxisTick />} />
-          <YAxis unit="k" />
+
+          <YAxis unit="k" domain={[0, 200]} tickCount={14} />
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            domain={[0, 160]}
+            tickCount={10}
+          />
 
           <Tooltip />
           <Legend wrapperStyle={{ bottom: -20 }} />
@@ -65,7 +72,7 @@ export const LineBarAreaComposedChart = ({
           {showItems.includes('usage') && (
             <Bar
               dataKey="usage"
-              barSize={20}
+              barSize={30}
               fill={color.MarketingSolar}
               name="Usage"
             />
@@ -73,10 +80,12 @@ export const LineBarAreaComposedChart = ({
 
           {showItems.includes('demand') && (
             <Line
-              type="monotone"
               dataKey="demand"
               stroke={color.Primary500}
               name="Demand"
+              yAxisId="right"
+              width={100}
+              strokeWidth={3}
             />
           )}
 

@@ -1,3 +1,4 @@
+import { color } from '../../config/theme';
 import { SxProps, Box } from '@mui/material';
 import { ResponsiveContainer, Area, ComposedChart } from 'recharts';
 
@@ -15,8 +16,9 @@ export const TinyLineChart = ({
           <Area
             type="monotone"
             dataKey="usage"
-            fill="#8884d8"
-            stroke="#8884d8"
+            fill={color.MarketingSolar}
+            stroke={color.Primary500}
+            strokeWidth={2}
             name="Temperature"
           />
         </ComposedChart>

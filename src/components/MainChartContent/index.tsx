@@ -9,25 +9,28 @@ import {
 } from '@mui/material';
 import { LineBarAreaComposedChart } from '../LineBarAreaComposedChart';
 import { color } from '../../config/theme';
-import { useState } from 'react';
-import { generateDetailedUsedData } from '../../mocks/detailedUsedData';
 import { Summary } from '../Summary';
 import { serviceData } from '../../mocks/serviceData';
+import { randomIntFromInterval } from '../../utils/numbers';
 
 export const MainChartContent = ({
   serviceType,
-  showItems
+  showItems,
+  handleChangeReportingPeriod,
+  selectedReportingPeriod,
+  years,
+  chartData
 }: {
   serviceType: string;
   showItems: string[];
+  handleChangeReportingPeriod: (param: string) => void;
+  selectedReportingPeriod: string;
+  years: number[];
+  chartData?: any[];
 }) => {
-  const [reportingPeriod, setReportingPeriod] = useState('2022');
-
   const handleChange = (event: SelectChangeEvent) => {
-    setReportingPeriod(event.target.value as string);
+    handleChangeReportingPeriod(event.target.value as string);
   };
-
-  const chartData = generateDetailedUsedData(null, reportingPeriod);
 
   return (
     <Box
@@ -52,16 +55,13 @@ export const MainChartContent = ({
               </Typography>
               <FormControl fullWidth sx={{ mb: 6 }}>
                 <Select
-                  value={reportingPeriod}
+                  value={selectedReportingPeriod}
                   onChange={handleChange}
                   size="small"
                 >
-                  <MenuItem value="2020">Year 2020</MenuItem>
-                  <MenuItem value="2021">Year 2021</MenuItem>
-                  <MenuItem value="2022" selected>
-                    Year 2022
-                  </MenuItem>
-                  <MenuItem value="2023">Year 2023</MenuItem>
+                  {years.map((year) => (
+                    <MenuItem value={year}>Year {year}</MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Box>
@@ -86,8 +86,13 @@ export const MainChartContent = ({
             <LineBarAreaComposedChart
               sx={{ height: 500, width: '100%' }}
               data={chartData.map((item) => ({
-                name: item.name,
-                ...item.day
+                name: item.ServicePeriodFrom,
+                demand: item.ElectricDemand,
+                usage: parseInt(item.ElectricUsage),
+                temperature: randomIntFromInterval(
+                  item.ElectricDemand,
+                  parseInt(item.ElectricUsage)
+                )
               }))}
               showItems={showItems}
             />

@@ -7,13 +7,14 @@ import {
   Typography
 } from '@mui/material';
 import { color } from '../../config/theme';
-import React, { useState } from 'react';
 
-export const LeftMenu = () => {
-  const [source, setSource] = useState('160');
-
+export const LeftMenu = ({
+  customers,
+  selectedCustomer,
+  handleChangeCustomer
+}) => {
   const handleChange = (event: SelectChangeEvent) => {
-    setSource(event.target.value);
+    handleChangeCustomer(event.target.value);
   };
 
   return (
@@ -30,25 +31,20 @@ export const LeftMenu = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={source}
+          value={selectedCustomer}
           onChange={handleChange}
           size="small"
         >
-          <MenuItem value="160" selected>
-            Carrier (Source) + br44167 - 160 (Unit)
-          </MenuItem>
-          <MenuItem value="200">
-            Carrier (Source) + cr53442 - 200 (Unit)
-          </MenuItem>
-          <MenuItem value="300">
-            Carrier (Source) + ar46473 - 300 (Unit)
-          </MenuItem>
+          {customers.map((item) => (
+            <MenuItem value={item} selected>
+              {item.Customer}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-
-      <Typography variant="h4">PSB Valwood Mgmt/Leasing</Typography>
-      <Typography variant="h5">180 Button Sr</Typography>
-      <Typography variant="h5">Carrolton, TX 75006</Typography>
+      <Typography variant="h4">{selectedCustomer.UtilityVendor}</Typography>
+      <Typography variant="h5">{selectedCustomer.MeterLocation}</Typography>
+      <Typography variant="h5">{selectedCustomer.Customer}</Typography>
     </Box>
   );
 };

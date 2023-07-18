@@ -2,7 +2,6 @@ import { color } from '../../config/theme';
 import { Box, Grid, Typography } from '@mui/material';
 
 export const Summary = ({ serviceData }) => {
-  console.log(serviceData);
   return (
     <>
       <Grid item xs={12} sm={6}>

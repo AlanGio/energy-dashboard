@@ -41,6 +41,7 @@ export const LineBarAreaComposedChart = ({
   data: unknown[];
   showItems?: string[];
 }) => {
+  console.log(data, 'data');
   return (
     <Box sx={sx}>
       <ResponsiveContainer width="100%" height="100%">
@@ -56,7 +57,12 @@ export const LineBarAreaComposedChart = ({
           }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" scale="band" tick={<CustomizedAxisTick />} />
+          <XAxis
+            dataKey="name"
+            scale="band"
+            tick={<CustomizedAxisTick />}
+            interval={0}
+          />
 
           <YAxis unit="k" domain={[0, 200]} tickCount={14} />
           <YAxis

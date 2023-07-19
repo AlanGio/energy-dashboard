@@ -9,18 +9,25 @@ import {
   Typography
 } from '@mui/material';
 import { color } from '../../config/theme';
-import { useState } from 'react';
 import { TinyLineChart } from '../TinyLineChart';
-import { generateDetailedUsedData } from '../../mocks/detailedUsedData';
 
-export const SecondaryChartContent = () => {
-  const [reportingPeriod, setReportingPeriod] = useState('11-2022');
-
+export const SecondaryChartContent = ({
+  selectedMonth,
+  selectedYear,
+  handleSelectedMonth,
+  handleSelectedYear,
+  periods,
+  chartData
+}) => {
   const handleChange = (event: SelectChangeEvent) => {
-    setReportingPeriod(event.target.value as string);
+    const selectedPeriod = event.target.value.split('-');
+    handleSelectedMonth(selectedPeriod[0]);
+    handleSelectedYear(selectedPeriod[1]);
   };
 
-  const currentPeriod = reportingPeriod.split('-');
+  const distinctDays = [
+    ...new Map(chartData.map((item) => [item['DateTime'], item])).values()
+  ];
 
   return (
     <Box
@@ -73,6 +80,7 @@ export const SecondaryChartContent = () => {
                     fontWeight: 400,
                     letterSpacing: 0.5
                   }}
+                  disabled
                 >
                   Week
                 </Button>
@@ -86,6 +94,7 @@ export const SecondaryChartContent = () => {
                     fontWeight: 400,
                     letterSpacing: 0.5
                   }}
+                  disabled
                 >
                   Day
                 </Button>
@@ -97,20 +106,23 @@ export const SecondaryChartContent = () => {
 
                 <FormControl fullWidth sx={{ mb: 6 }}>
                   <Select
-                    value={reportingPeriod}
+                    value={`${selectedMonth}-${selectedYear}`}
                     onChange={handleChange}
                     size="small"
                   >
-                    <MenuItem value="11-2022" selected>
-                      November 2022
-                    </MenuItem>
-                    <MenuItem value="12-2022">December 2022</MenuItem>
-                    <MenuItem value="01-2023">Juanary 2023</MenuItem>
-                    <MenuItem value="02-2023">February 2023</MenuItem>
-                    <MenuItem value="03-2023">March 2023</MenuItem>
-                    <MenuItem value="0411-2023">April 2023</MenuItem>
-                    <MenuItem value="05-2023">May 2023</MenuItem>
-                    <MenuItem value="06-2023">June 2023</MenuItem>
+                    {periods.map((period) => {
+                      const periodSplit = period.split('-');
+                      return (
+                        <MenuItem value={period} selected>
+                          {new Date(
+                            `${periodSplit[0]}-1-${periodSplit[1]}`
+                          ).toLocaleDateString('en-us', {
+                            month: 'long',
+                            year: 'numeric'
+                          })}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </Box>
@@ -120,31 +132,45 @@ export const SecondaryChartContent = () => {
       </Grid>
 
       <Grid container spacing={2}>
-        {generateDetailedUsedData(currentPeriod[0], currentPeriod[1]).map(
-          (item) => (
-            <Grid item xs={4} sm={2} key={item.name}>
-              <Box
+        {distinctDays.map((item) => (
+          <Grid item xs={4} sm={2} key={item['ID']}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                mt: 2
+              }}
+            >
+              <Typography variant="subtitle1">{item['DateTime']}</Typography>
+              <TinyLineChart
+                data={chartData
+                  .filter(
+                    (chartItem) => chartItem['DateTime'] === item['DateTime']
+                  )
+                  .map((item, index) => {
+                    return {
+                      name: new Date(item['DateTime']).toLocaleDateString(
+                        'en-us',
+                        {
+                          weekday: 'short',
+                          month: 'short',
+                          day: 'numeric'
+                        }
+                      ),
+                      usage: parseFloat(item['Electric Demand KW'])
+                    };
+                  })}
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  mt: 2
+                  height: 100,
+                  width: '100%',
+                  border: `1px solid ${color.Neutral400}`,
+                  pt: 2
                 }}
-              >
-                <Typography variant="subtitle1">{item.name}</Typography>
-                <TinyLineChart
-                  data={item.hours}
-                  sx={{
-                    height: 100,
-                    width: '100%',
-                    border: `1px solid ${color.Neutral400}`,
-                    pt: 2
-                  }}
-                />
-              </Box>
-            </Grid>
-          )
-        )}
+              />
+            </Box>
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );

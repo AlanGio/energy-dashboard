@@ -41,7 +41,6 @@ export const LineBarAreaComposedChart = ({
   data: unknown[];
   showItems?: string[];
 }) => {
-  console.log(data, 'data');
   return (
     <Box sx={sx}>
       <ResponsiveContainer width="100%" height="100%">

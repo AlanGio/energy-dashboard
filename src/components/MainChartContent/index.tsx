@@ -16,20 +16,26 @@ import { randomIntFromInterval } from '../../utils/numbers';
 export const MainChartContent = ({
   serviceType,
   showItems,
-  handleChangeReportingPeriod,
-  selectedReportingPeriod,
+  selectedMonth,
+  selectedYear,
+  handleSelectedMonth,
+  handleSelectedYear,
   years,
   chartData
 }: {
   serviceType: string;
   showItems: string[];
-  handleChangeReportingPeriod: (param: string) => void;
-  selectedReportingPeriod: string;
+  selectedMonth: string;
+  selectedYear: string;
+  handleSelectedMonth: (param: string) => void;
+  handleSelectedYear: (param: string) => void;
   years: number[];
   chartData?: any[];
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
-    handleChangeReportingPeriod(event.target.value as string);
+    const selectedPeriod = event.target.value.split('-');
+    handleSelectedMonth(selectedPeriod[0]);
+    handleSelectedYear(selectedPeriod[1]);
   };
 
   return (
@@ -55,13 +61,15 @@ export const MainChartContent = ({
               </Typography>
               <FormControl fullWidth sx={{ mb: 6 }}>
                 <Select
-                  value={selectedReportingPeriod}
+                  value={`01-${selectedYear}`}
                   onChange={handleChange}
                   size="small"
                 >
-                  {years.map((year) => (
-                    <MenuItem value={year}>Year {year}</MenuItem>
-                  ))}
+                  {years.map((year) => {
+                    return (
+                      <MenuItem value={`01-${year}`}>Year {year}</MenuItem>
+                    );
+                  })}
                 </Select>
               </FormControl>
             </Box>
@@ -88,10 +96,10 @@ export const MainChartContent = ({
               data={chartData.map((item) => ({
                 name: item.ServicePeriodFrom,
                 demand: item.ElectricDemand,
-                usage: parseInt(item.ElectricUsage),
+                usage: parseFloat(item.ElectricUsage),
                 temperature: randomIntFromInterval(
                   item.ElectricDemand,
-                  parseInt(item.ElectricUsage)
+                  parseFloat(item.ElectricUsage)
                 )
               }))}
               showItems={showItems}

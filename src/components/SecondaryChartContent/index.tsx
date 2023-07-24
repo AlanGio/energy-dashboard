@@ -35,23 +35,24 @@ export const SecondaryChartContent = ({
         border: `1px solid ${color.TransparenciesSecondaryMain25}`,
         borderTopRightRadius: 32,
         backgroundColor: color.ShadesWhite,
-        p: 4,
-        ml: 2,
+        p: [2, 4],
+        ml: [0, 2],
         mt: 2
       }}
     >
       <Grid container>
         <Grid item xs={12} sm={12}>
           <Box>
-            <Typography variant="h5" sx={{ fontWeight: 600, pt: 4 }}>
+            <Typography variant="h5" sx={{ fontWeight: 600, pt: [0, 4] }}>
               Detailed Usage Data
             </Typography>
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row',
+                flexDirection: ['column', 'row'],
                 justifyContent: 'space-between',
-                pt: 1
+                pt: 1,
+                gap: [2, 0]
               }}
             >
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
@@ -133,7 +134,7 @@ export const SecondaryChartContent = ({
 
       <Grid container spacing={2}>
         {distinctDays.map((item) => (
-          <Grid item xs={4} sm={2} key={item['ID']}>
+          <Grid item xs={6} sm={2} key={item['ID']}>
             <Box
               sx={{
                 display: 'flex',

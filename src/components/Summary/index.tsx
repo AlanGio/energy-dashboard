@@ -7,8 +7,8 @@ export const Summary = ({ serviceData }) => {
       <Grid item xs={12} sm={6}>
         <Box
           sx={{
-            pr: 4,
-            pb: 4,
+            pr: [1, 4],
+            pb: [2, 4],
             borderBottom: `1px solid ${color.TransparenciesSecondaryMain25}`,
             borderRight: `1px solid ${color.TransparenciesSecondaryMain25}`
           }}
@@ -17,7 +17,8 @@ export const Summary = ({ serviceData }) => {
             variant="h5"
             sx={{
               fontWeight: 600,
-              mb: 2
+              mb: [1, 2],
+              fontSize: [16, 18]
             }}
           >
             {serviceData[0].name}
@@ -32,8 +33,7 @@ export const Summary = ({ serviceData }) => {
                   alignItems: 'center'
                 }}
               >
-                <Typography variant="h3">
-                  {' '}
+                <Typography variant="h3" sx={{ fontSize: [26, 36] }}>
                   {item.value} {item.symbol}
                 </Typography>
                 <Typography variant="body2" sx={{ textTransform: 'uppercase' }}>
@@ -47,8 +47,9 @@ export const Summary = ({ serviceData }) => {
       <Grid item xs={12} sm={6}>
         <Box
           sx={{
-            pl: 4,
-            pb: 4,
+            pt: [2, 0],
+            pl: [0, 4],
+            pb: [2, 4],
             borderBottom: `1px solid ${color.TransparenciesSecondaryMain25}`
           }}
         >
@@ -56,7 +57,8 @@ export const Summary = ({ serviceData }) => {
             variant="h5"
             sx={{
               fontWeight: 600,
-              mb: 2
+              mb: [1, 2],
+              fontSize: [16, 18]
             }}
           >
             {serviceData[1].name}
@@ -71,8 +73,7 @@ export const Summary = ({ serviceData }) => {
                   alignItems: 'center'
                 }}
               >
-                <Typography variant="h3">
-                  {' '}
+                <Typography variant="h3" sx={{ fontSize: [26, 36] }}>
                   {item.value} {item.symbol}
                 </Typography>
                 <Typography variant="body2" sx={{ textTransform: 'uppercase' }}>

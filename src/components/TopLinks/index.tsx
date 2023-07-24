@@ -3,7 +3,11 @@ import { color } from '../../config/theme';
 
 export const TopLinks = () => (
   <Box sx={{ display: 'flex', gap: 2, my: 2, justifyContent: 'flex-end' }}>
-    <Button variant="tertiary" onClick={console.log}>
+    <Button
+      variant="tertiary"
+      onClick={console.log}
+      sx={{ display: ['none', 'block'] }}
+    >
       <Typography
         sx={{
           fontWeight: 600,
@@ -17,14 +21,15 @@ export const TopLinks = () => (
       </Typography>
     </Button>
 
-    <Button variant="tertiary" onClick={console.log}>
+    <Button variant="tertiary" onClick={console.log} sx={{ maxWidth: 'auto' }}>
       <Typography
         sx={{
           fontWeight: 600,
           letterSpacing: '2px',
           textTransform: 'uppercase',
           gap: 1,
-          borderBottom: `2px solid ${color.Primary500}`
+          borderBottom: `2px solid ${color.Primary500}`,
+          fontSize: [12, 16]
         }}
       >
         Contact Link
@@ -45,7 +50,8 @@ export const TopLinks = () => (
           fontWeight: 600,
           letterSpacing: '2px',
           textTransform: 'uppercase',
-          borderBottom: `2px solid ${color.Primary500}`
+          borderBottom: `2px solid ${color.Primary500}`,
+          fontSize: [12, 16]
         }}
       >
         New Service Request

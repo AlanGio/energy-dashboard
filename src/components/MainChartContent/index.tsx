@@ -44,19 +44,28 @@ export const MainChartContent = ({
         border: `1px solid ${color.TransparenciesSecondaryMain25}`,
         borderTopRightRadius: 32,
         backgroundColor: color.ShadesWhite,
-        p: 4,
-        ml: 2
+        p: [2, 4],
+        ml: [0, 2]
       }}
     >
       <Grid container>
         <Summary serviceData={serviceData[serviceType]} />
         <Grid item xs={12} sm={12}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="h5" sx={{ fontWeight: 600, pt: 4 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: ['column-reverse', 'row'],
+              justifyContent: 'space-between'
+            }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: 600, pt: [1, 4] }}>
               Monthly Usage Data
             </Typography>
             <Box>
-              <Typography variant="subtitle1" sx={{ fontWeight: 600, pt: 3 }}>
+              <Typography
+                variant="subtitle1"
+                sx={{ fontWeight: 600, pt: [0, 3] }}
+              >
                 Reporting Period
               </Typography>
               <FormControl fullWidth sx={{ mb: 6 }}>
@@ -83,7 +92,7 @@ export const MainChartContent = ({
                 writingMode: 'vertical-rl',
                 width: 30,
                 height: 450,
-                display: 'flex',
+                display: ['none', 'flex'],
                 justifyContent: 'center',
                 transform: 'rotate(180deg)',
                 fontWeight: 600
@@ -92,7 +101,14 @@ export const MainChartContent = ({
               Monthly Usage (kWh)
             </Typography>
             <LineBarAreaComposedChart
-              sx={{ height: 500, width: '100%' }}
+              sx={{
+                height: [400, 500],
+                width: '100%',
+                '& .recharts-cartesian-axis-ticks': { fontSize: [10, 15] },
+                '& .recharts-legend-wrapper': {
+                  bottom: ['-5px !important', 20]
+                }
+              }}
               data={chartData.map((item) => ({
                 name: item.ServicePeriodFrom,
                 demand: item.ElectricDemand,
@@ -111,7 +127,7 @@ export const MainChartContent = ({
                 writingMode: 'vertical-rl',
                 width: 30,
                 height: 450,
-                display: 'flex',
+                display: ['none', 'flex'],
                 justifyContent: 'center',
                 fontWeight: 600
               }}

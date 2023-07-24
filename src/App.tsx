@@ -1,6 +1,6 @@
 import Container from '@mui/material/Container';
 import './App.css';
-import { Grid, StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { Box, Grid, StyledEngineProvider, ThemeProvider } from '@mui/material';
 import { HeaderControls } from './components/HeaderControls';
 import { LeftMenu } from './components/LeftMenu';
 import { theme } from './config/theme';
@@ -97,38 +97,42 @@ const App = () => {
               />
             </Grid>
 
-            <Grid item xs={12} sm={3}>
-              <LeftMenu
-                customers={customers}
-                selectedCustomer={customer}
-                handleChangeCustomer={setCustomer}
-              />
-            </Grid>
+            <Box
+              sx={{ display: 'flex', flexDirection: ['column-reverse', 'row'] }}
+            >
+              <Grid item xs={12} sm={3}>
+                <LeftMenu
+                  customers={customers}
+                  selectedCustomer={customer}
+                  handleChangeCustomer={setCustomer}
+                />
+              </Grid>
 
-            <Grid item xs={12} sm={9}>
-              <MainChartContent
-                serviceType={serviceType}
-                showItems={
-                  weather
-                    ? ['usage', 'demand', 'temperature']
-                    : ['usage', 'demand']
-                }
-                years={years}
-                selectedMonth={selectedMonth}
-                selectedYear={selectedYear}
-                handleSelectedMonth={setSelectedMonth}
-                handleSelectedYear={setSelectedYear}
-                chartData={chartData}
-              />
-              <SecondaryChartContent
-                periods={periods}
-                selectedMonth={selectedMonth}
-                selectedYear={selectedYear}
-                handleSelectedMonth={setSelectedMonth}
-                handleSelectedYear={setSelectedYear}
-                chartData={chartDailyDataFormatted}
-              />
-            </Grid>
+              <Grid item xs={12} sm={9}>
+                <MainChartContent
+                  serviceType={serviceType}
+                  showItems={
+                    weather
+                      ? ['usage', 'demand', 'temperature']
+                      : ['usage', 'demand']
+                  }
+                  years={years}
+                  selectedMonth={selectedMonth}
+                  selectedYear={selectedYear}
+                  handleSelectedMonth={setSelectedMonth}
+                  handleSelectedYear={setSelectedYear}
+                  chartData={chartData}
+                />
+                <SecondaryChartContent
+                  periods={periods}
+                  selectedMonth={selectedMonth}
+                  selectedYear={selectedYear}
+                  handleSelectedMonth={setSelectedMonth}
+                  handleSelectedYear={setSelectedYear}
+                  chartData={chartDailyDataFormatted}
+                />
+              </Grid>
+            </Box>
           </Grid>
         </Container>
       </ThemeProvider>

@@ -8,7 +8,7 @@ export const Header = () => {
   const date = new Date().toDateString();
 
   return (
-    <Box sx={{ backgroundColor: '#25242a' }}>
+    <Box sx={{ backgroundColor: ['transparent', '#25242a'] }}>
       <Container maxWidth="xl">
         <Grid container>
           <Grid item xs={12} sm={12}>
@@ -21,7 +21,8 @@ export const Header = () => {
             sm={12}
             sx={{
               color: color.Primary100,
-              display: 'flex',
+              display: ['none', 'flex'],
+              flexDirection: ['column', 'row'],
               justifyContent: 'space-between',
               pt: 2,
               pb: 6,
@@ -33,11 +34,11 @@ export const Header = () => {
             <Box>Welcome!</Box>
             <Box
               sx={{
-                display: 'flex',
                 gap: 1,
                 alignItems: 'center',
                 fontSize: 25,
-                fontFamily: 'Outfit'
+                fontFamily: 'Outfit',
+                display: ['none', 'flex']
               }}
             >
               Your space to grow,

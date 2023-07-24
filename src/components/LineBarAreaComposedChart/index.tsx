@@ -45,14 +45,14 @@ export const LineBarAreaComposedChart = ({
     <Box sx={sx}>
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
-          width={500}
-          height={500}
+          width={520}
+          height={550}
           data={data}
           margin={{
-            top: 20,
-            right: 20,
-            bottom: 20,
-            left: 20
+            top: 30,
+            right: 0,
+            bottom: 30,
+            left: 0
           }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />

@@ -22,7 +22,8 @@ export const LeftMenu = ({
       sx={{
         border: `1px solid ${color.TransparenciesSecondaryMain25}`,
         backgroundColor: color.ShadesWhite,
-        p: 1
+        p: [2, 1],
+        mt: [2, 0]
       }}
     >
       <Typography variant="h4">General Info</Typography>

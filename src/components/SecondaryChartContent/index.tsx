@@ -43,7 +43,7 @@ export const SecondaryChartContent = ({
       <Grid container>
         <Grid item xs={12} sm={12}>
           <Box>
-            <Typography variant="h5" sx={{ fontWeight: 600, pt: [0, 4] }}>
+            <Typography variant="h5" sx={{ fontWeight: 600, pt: [1, 4] }}>
               Detailed Usage Data
             </Typography>
             <Box
@@ -55,7 +55,13 @@ export const SecondaryChartContent = ({
                 gap: [2, 0]
               }}
             >
-              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+              <Box
+                sx={{
+                  gap: 1,
+                  alignItems: 'center',
+                  display: ['none', 'flex']
+                }}
+              >
                 Filters
                 <Button
                   size="small"
@@ -101,11 +107,14 @@ export const SecondaryChartContent = ({
                 </Button>
               </Box>
               <Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ fontWeight: 600, pt: [2, 0] }}
+                >
                   Reporting Period
                 </Typography>
 
-                <FormControl fullWidth sx={{ mb: 6 }}>
+                <FormControl fullWidth sx={{ mb: [2, 6] }}>
                   <Select
                     value={`${selectedMonth}-${selectedYear}`}
                     onChange={handleChange}

@@ -54,21 +54,18 @@ export const MainChartContent = ({
           <Box
             sx={{
               display: 'flex',
-              flexDirection: ['column-reverse', 'row'],
+              flexDirection: ['column', 'row'],
               justifyContent: 'space-between'
             }}
           >
-            <Typography variant="h5" sx={{ fontWeight: 600, pt: [1, 4] }}>
+            <Typography variant="h5" sx={{ fontWeight: 600, pt: [2, 4] }}>
               Monthly Usage Data
             </Typography>
             <Box>
-              <Typography
-                variant="subtitle1"
-                sx={{ fontWeight: 600, pt: [0, 3] }}
-              >
+              <Typography variant="subtitle1" sx={{ fontWeight: 600, pt: 3 }}>
                 Reporting Period
               </Typography>
-              <FormControl fullWidth sx={{ mb: 6 }}>
+              <FormControl fullWidth sx={{ mb: [0, 6] }}>
                 <Select
                   value={`01-${selectedYear}`}
                   onChange={handleChange}

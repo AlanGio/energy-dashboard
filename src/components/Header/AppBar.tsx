@@ -32,8 +32,8 @@ export default function MenuAppBar() {
       <AppBar
         position="static"
         sx={{
-          backgroundColor: color.MarketingSolar,
-          borderBottomRightRadius: 30
+          backgroundColor: [color.Neutral800, color.MarketingSolar],
+          borderBottomRightRadius: [0, 30]
         }}
       >
         <Toolbar>
@@ -42,12 +42,17 @@ export default function MenuAppBar() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ color: 'black' }}
+            sx={{ color: [color.TertiaryMain, 'black'] }}
           >
             <MenuIcon />
           </IconButton>
           <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-            <Box sx={{ width: 130 }}>
+            <Box
+              sx={{
+                width: 130,
+                '& svg': { fill: [color.TertiaryMain, 'black'] }
+              }}
+            >
               <LinkLogo />
             </Box>
           </Box>
@@ -60,7 +65,7 @@ export default function MenuAppBar() {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-                sx={{ color: 'black' }}
+                sx={{ color: [color.TertiaryMain, 'black'] }}
               >
                 <AccountCircle />
               </IconButton>

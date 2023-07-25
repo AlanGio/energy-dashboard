@@ -1,6 +1,12 @@
 import Container from '@mui/material/Container';
 import './App.css';
-import { Box, Grid, StyledEngineProvider, ThemeProvider } from '@mui/material';
+import {
+  Box,
+  Grid,
+  StyledEngineProvider,
+  ThemeProvider,
+  Typography
+} from '@mui/material';
 import { HeaderControls } from './components/HeaderControls';
 import { LeftMenu } from './components/LeftMenu';
 import { theme } from './config/theme';
@@ -87,6 +93,12 @@ const App = () => {
               <TopLinks />
             </Grid>
             <Grid item xs={12} sm={12}>
+              <Typography
+                variant="h3"
+                sx={{ display: ['flex', 'none'], mb: 3 }}
+              >
+                Energy+
+              </Typography>
               <HeaderControls
                 serviceType={serviceType}
                 metric={metric}

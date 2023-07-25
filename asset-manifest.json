@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/energy-dashboard/static/css/main.d8ff6ebf.css",
-    "main.js": "/energy-dashboard/static/js/main.99b98854.js",
+    "main.js": "/energy-dashboard/static/js/main.0efb3a86.js",
     "static/js/787.ee1743e2.chunk.js": "/energy-dashboard/static/js/787.ee1743e2.chunk.js",
     "static/media/header-bg.png": "/energy-dashboard/static/media/header-bg.fa15cdb4d55c14317346.png",
     "static/media/LinkLogo.svg": "/energy-dashboard/static/media/LinkLogo.bfba535da9940ac274a2cd9de1e314c7.svg",
     "index.html": "/energy-dashboard/index.html",
     "main.d8ff6ebf.css.map": "/energy-dashboard/static/css/main.d8ff6ebf.css.map",
-    "main.99b98854.js.map": "/energy-dashboard/static/js/main.99b98854.js.map",
+    "main.0efb3a86.js.map": "/energy-dashboard/static/js/main.0efb3a86.js.map",
     "787.ee1743e2.chunk.js.map": "/energy-dashboard/static/js/787.ee1743e2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d8ff6ebf.css",
-    "static/js/main.99b98854.js"
+    "static/js/main.0efb3a86.js"
   ]
 }

@@ -25,7 +25,7 @@ export const Header = () => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               pt: 2,
-              pb: [2, 6],
+              pb: [8, 6],
               fontSize: 22,
               px: 2,
               backgroundImage: ['none', `url(${background})`],

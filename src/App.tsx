@@ -117,6 +117,11 @@ const App = () => {
                   customers={customers}
                   selectedCustomer={customer}
                   handleChangeCustomer={setCustomer}
+                  sx={{
+                    position: ['absolute', 'relative'],
+                    top: [80, 0],
+                    width: ['calc(90% - 48px)', 'auto']
+                  }}
                 />
               </Grid>
 

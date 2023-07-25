@@ -11,7 +11,8 @@ import { color } from '../../config/theme';
 export const LeftMenu = ({
   customers,
   selectedCustomer,
-  handleChangeCustomer
+  handleChangeCustomer,
+  sx = {}
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
     handleChangeCustomer(event.target.value);
@@ -20,14 +21,17 @@ export const LeftMenu = ({
   return (
     <Box
       sx={{
-        border: `1px solid ${color.TransparenciesSecondaryMain25}`,
-        backgroundColor: color.ShadesWhite,
+        border: ['none', `1px solid ${color.TransparenciesSecondaryMain25}`],
+        backgroundColor: ['transparent', color.ShadesWhite],
         p: [2, 1],
-        mt: [2, 0]
+        mt: [2, 0],
+        ...sx
       }}
     >
-      <Typography variant="h4">General Info</Typography>
-      <Typography variant="h5">Source, Unit</Typography>
+      <Box sx={{ display: ['none', 'block'] }}>
+        <Typography variant="h4">General Info</Typography>
+        <Typography variant="h5">Source, Unit</Typography>
+      </Box>
       <FormControl fullWidth sx={{ mb: 6 }}>
         <Select
           labelId="demo-simple-select-label"
@@ -35,6 +39,15 @@ export const LeftMenu = ({
           value={selectedCustomer}
           onChange={handleChange}
           size="small"
+          sx={{
+            '&.MuiOutlinedInput-root': {
+              backgroundColor: ['transparent', 'white'],
+              color: [color.Primary100, 'black']
+            },
+            '& .MuiSvgIcon-root': {
+              fill: [color.Primary100, 'black']
+            }
+          }}
         >
           {customers.map((item) => (
             <MenuItem value={item} selected>
@@ -43,9 +56,12 @@ export const LeftMenu = ({
           ))}
         </Select>
       </FormControl>
-      <Typography variant="h4">{selectedCustomer.UtilityVendor}</Typography>
-      <Typography variant="h5">{selectedCustomer.MeterLocation}</Typography>
-      <Typography variant="h5">{selectedCustomer.Customer}</Typography>
+
+      <Box sx={{ display: ['none', 'block'] }}>
+        <Typography variant="h4">{selectedCustomer.UtilityVendor}</Typography>
+        <Typography variant="h5">{selectedCustomer.MeterLocation}</Typography>
+        <Typography variant="h5">{selectedCustomer.Customer}</Typography>
+      </Box>
     </Box>
   );
 };

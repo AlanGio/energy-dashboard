@@ -144,13 +144,14 @@ export const SecondaryChartContent = ({
       </Grid>
 
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} sm={2} sx={{ display: ['flex', 'none'] }}>
           <Box
             sx={{
               display: ['flex', 'none'],
               flexDirection: ['row', 'column'],
               justifyContent: ['space-between', 'center'],
-              alignItems: ['flex-end', 'center']
+              alignItems: ['flex-end', 'center'],
+              width: '100%'
             }}
           >
             <Typography variant="subtitle2" sx={{ fontSize: 13 }}>

@@ -29,6 +29,8 @@ export const SecondaryChartContent = ({
     ...new Map(chartData.map((item) => [item['DateTime'], item])).values()
   ];
 
+  console.log(distinctDays, 'distinctDays');
+
   return (
     <Box
       sx={{
@@ -142,17 +144,51 @@ export const SecondaryChartContent = ({
       </Grid>
 
       <Grid container spacing={2}>
+        <Grid item xs={12} sm={2}>
+          <Box
+            sx={{
+              display: ['flex', 'none'],
+              flexDirection: ['row', 'column'],
+              justifyContent: ['space-between', 'center'],
+              alignItems: ['flex-end', 'center']
+            }}
+          >
+            <Typography variant="subtitle2" sx={{ fontSize: 13 }}>
+              Date
+            </Typography>
+            <Typography variant="subtitle2" sx={{ fontSize: 13 }}>
+              Peak
+            </Typography>
+            <Typography variant="subtitle2" sx={{ fontSize: 13 }}>
+              24hr Profile
+            </Typography>
+          </Box>
+        </Grid>
         {distinctDays.map((item) => (
-          <Grid item xs={6} sm={2} key={item['ID']}>
+          <Grid item xs={12} sm={2} key={item['ID']}>
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                mt: 2
+                flexDirection: ['row', 'column'],
+                justifyContent: ['space-between', 'center'],
+                alignItems: ['flex-end', 'center'],
+                mt: [0, 2],
+                borderBottom: [`1px solid ${color.Neutral400}`, 'none']
               }}
             >
-              <Typography variant="subtitle1">{item['DateTime']}</Typography>
+              <Typography variant="subtitle1" sx={{ pb: [0.6, 0] }}>
+                {new Date(item['DateTime']).toLocaleDateString('en-us', {
+                  weekday: 'short',
+                  day: 'numeric',
+                  month: 'short'
+                })}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                sx={{ display: ['flex', 'none'], pb: 0.6 }}
+              >
+                {item['Electric Demand KW']} kW
+              </Typography>
               <TinyLineChart
                 data={chartData
                   .filter(
@@ -172,10 +208,10 @@ export const SecondaryChartContent = ({
                     };
                   })}
                 sx={{
-                  height: 100,
-                  width: '100%',
-                  border: `1px solid ${color.Neutral400}`,
-                  pt: 2
+                  height: [40, 100],
+                  width: [140, '100%'],
+                  border: ['none', `1px solid ${color.Neutral400}`],
+                  pt: [0, 2]
                 }}
               />
             </Box>

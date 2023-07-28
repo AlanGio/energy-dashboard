@@ -1,7 +1,7 @@
 export const serviceData = {
   electric: [
     {
-      name: 'This Momth',
+      name: 'This Month',
       values: [
         { name: 'Total Electric Usage', value: '100,396', symbol: 'kWh' },
         { name: 'Peak Demand', value: '90.6', symbol: 'kW' }

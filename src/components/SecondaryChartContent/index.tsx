@@ -29,8 +29,6 @@ export const SecondaryChartContent = ({
     ...new Map(chartData.map((item) => [item['DateTime'], item])).values()
   ];
 
-  console.log(distinctDays, 'distinctDays');
-
   return (
     <Box
       sx={{

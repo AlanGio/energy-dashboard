@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import data from './mocks/mainMock.json';
 import dailyData from './mocks/dailyMockData.json';
+import '@fontsource/roboto/400.css';
 
 const App = () => {
   const customers = [

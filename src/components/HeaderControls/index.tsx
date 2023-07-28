@@ -29,7 +29,7 @@ export const HeaderControls = ({
     <Box
       sx={{
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: ['flex-end', 'space-between'],
         gap: 3,
         mb: 2,
         flexDirection: ['column-reverse', 'row']
@@ -63,19 +63,6 @@ export const HeaderControls = ({
               callback: handleMetric
             }
           ]}
-        />
-
-        <FormControlLabel
-          sx={{ display: ['none', 'block'] }}
-          control={
-            <SingleSwitch
-              checked={weather}
-              onChange={handleChange}
-              sx={{ m: 1 }}
-              defaultChecked
-            />
-          }
-          label="Show Weather Data"
         />
 
         <ViewToggleButton
@@ -117,6 +104,18 @@ export const HeaderControls = ({
               callback: handleServiceType
             }
           ]}
+        />
+        <FormControlLabel
+          sx={{ display: ['none', 'block'] }}
+          control={
+            <SingleSwitch
+              checked={weather}
+              onChange={handleChange}
+              sx={{ m: 1 }}
+              defaultChecked
+            />
+          }
+          label="Show Weather Data"
         />
       </Box>
 

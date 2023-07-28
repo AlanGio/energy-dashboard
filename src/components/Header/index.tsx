@@ -1,8 +1,8 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
 import MenuAppBar from './AppBar';
 import { color } from '../../config/theme';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import background from '../../assets/images/header-bg.png';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const Header = () => {
   const date = new Date().toDateString();
@@ -63,7 +63,7 @@ export const Header = () => {
                 textDecoration: 'underline'
               }}
             >
-              <ArrowBackIosIcon /> Back
+              <ArrowBackIcon /> Back
             </Box>
             <Box
               sx={{ display: 'flex', fontSize: [14, 22], alignItems: 'center' }}
